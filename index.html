@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomás Guarna</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10vh 20px;
+            line-height: 1.5;
+            font-size: 18px;
+        }
+        a {
+            color: blue;
+        }
+        p {
+            margin-bottom: 2rem;
+        }
+        .links a {
+            margin-right: 2rem;
+        }
+        .email-copy {
+            cursor: pointer;
+            position: relative;
+        }
+        .email-copy:after {
+            content: "Copied!";
+            position: absolute;
+            left: 0;
+            top: -20px;
+            background: #333;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 12px;
+            opacity: 0;
+        }
+        .email-copy.copied:after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        I’m a PhD candidate in Communication at Stanford University, where I’m a Knight-Hennessy Scholar. I research technology governance from a sociocultural perspective.
+        I graduated from MIT’s Comparative Media Studies program in 2022. Before MIT, I got my B.A. in Social Sciences from Universidad Torcuato Di Tella and worked in the President of Argentina’s Office.
+    </p>
+    <p>
+        Soy estudiante doctoral en Comunicación en Stanford, donde soy un Knight-Hennessy Scholar. Investigo la gobernanza tecnológica desde una perspectiva sociocultural.
+        Recibí mi maestría del programa de Estudios Comparativos de Medios de MIT en 2022. Antes de MIT, estudié la Licenciatura en Ciencias Sociales de la Universidad Torcuato Di Tella y trabajé en la Presidencia de Argentina.
+    </p>
+    <p class="links">
+        <a href="#" class="email-copy" onclick="copyEmail(event)">Email</a>
+        <a href="https://bsky.app/profile/tomasgna.bsky.social">Bluesky</a>
+        <a href="https://www.linkedin.com/in/tomasguarna/">LinkedIn</a>
+    </p>
+
+    <script>
+    function copyEmail(e) {
+        e.preventDefault();
+        navigator.clipboard.writeText("tguarna@stanford.edu");
+        e.target.classList.add("copied");
+        setTimeout(() => e.target.classList.remove("copied"), 2000);
+    }
+    </script>
+</body>
+</html>
