@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tomás Guarna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #faf9f5;
+      color: #1a1a1a;
+      font-family: 'Hanken Grotesk', sans-serif;
+      min-height: 100vh;
+      padding: 80px 32px 130px;
+    }
+
+    .layout {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 232px minmax(0, 1fr);
+      gap: 64px;
+    }
+
+    aside {
+      position: sticky;
+      top: 80px;
+      align-self: start;
+    }
+
+    aside img, aside canvas {
+      width: 100%;
+      aspect-ratio: 3/4;
+      display: block;
+      margin-bottom: 22px;
+    }
+
+    aside img { object-fit: cover; }
+
+    h1 {
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 1.12;
+      letter-spacing: -.022em;
+      margin-bottom: 18px;
+    }
+
+    .meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      letter-spacing: .01em;
+      line-height: 1.65;
+      color: #5a574e;
+      margin-bottom: 30px;
+    }
+
+    .meta .uni { color: #3a382f; }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      font-family: 'Space Mono', monospace;
+      font-size: 13.5px;
+      margin-bottom: 30px;
+    }
+
+    a { color: #1a1a1a; text-decoration: none; }
+    a:hover { color: #0040ff; }
+
+    .email-copy {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .email-copy::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 0;
+      top: -28px;
+      background: #1a1a1a;
+      color: #faf9f5;
+      padding: 3px 7px;
+      border-radius: 3px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .email-copy.copied::after { opacity: 1; }
+
+    .lang-toggle {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+    }
+
+    .lang-toggle button {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      color: #9a978d;
+    }
+
+    .lang-toggle .sep { color: #cfccc2; }
+    :lang(en) #btn-en, :lang(es) #btn-es { color: #0040ff; }
+
+    :lang(es) [data-en] { display: none; }
+    :lang(en) [data-es] { display: none; }
+
+    main { min-width: 0; }
+
+    .bio {
+      font-size: 16px;
+      line-height: 1.45;
+      max-width: 560px;
+      color: #2c2a23;
+    }
+
+    .bio p:not(:last-child) { margin-bottom: .85em; }
+
+    .section-title {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -.012em;
+      margin: 44px 0 24px;
+    }
+
+    .pub { margin-bottom: 32px; }
+
+    .pub-question {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: #2a2822;
+      -webkit-text-stroke: 0.3px #2a2822;
+      background: linear-gradient(transparent 36%, rgba(255,228,132,.42) 36%, rgba(255,228,132,.42) 92%, transparent 92%);
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      padding: 1px 4px;
+      line-height: 1.65;
+    }
+
+    .pub-title { font-size: 19px; line-height: 1.32; font-weight: 600; }
+    .pub-meta { line-height: 1.4; margin-top: 7px; }
+    .pub-journal { font-size: 14.5px; font-weight: 600; color: #2c2a23; }
+    .pub-tail { font-family: 'Space Mono', monospace; font-size: 12.5px; color: #3a382f; }
+
+    .cv-note { font-size: 15px; line-height: 1.5; color: #6f6c63; margin-top: 30px; }
+
+    @media (max-width: 732px) {
+      body { padding: 40px 20px 60px; }
+      .layout { grid-template-columns: 1fr; gap: 32px; }
+      aside { position: static; }
+      aside img, aside canvas { width: 30%; aspect-ratio: 1; margin-bottom: 32px; }
+      h1 { margin-bottom: 10px; }
+      .meta { margin-bottom: 16px; }
+      .meta br { display: none; }
+      .meta span ~ span::before { content: ' · '; color: #cfccc2; }
+      .links { flex-direction: row; flex-wrap: wrap; gap: 0 18px; margin-bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+
+    <aside>
+      <img src="assets/tomas3.png" alt="Tomás Guarna">
+      <h1>Tomás Guarna</h1>
+      <div class="meta">
+        <span>PhD Candidate, Communication</span><br>
+        <span class="uni">Stanford University</span>
+      </div>
+      <nav class="links">
+        <a href="#" class="email-copy" data-tooltip="Copied!" onclick="copyEmail(event)">→ Email</a>
+        <a href="https://bsky.app/profile/tomasgna.bsky.social" target="_blank" rel="noopener">→ Bluesky</a>
+        <a href="https://www.linkedin.com/in/tomasguarna/" target="_blank" rel="noopener">→ LinkedIn</a>
+      </nav>
+      <div class="lang-toggle">
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+        <span class="sep">/</span>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+    </aside>
+
+    <main>
+      <div class="bio">
+        <div data-en>
+          <p>I'm a PhD candidate in Communication at Stanford University, where I'm a Knight-Hennessy Scholar. I research technology governance from a sociocultural perspective.</p>
+          <p>I graduated from MIT's Comparative Media Studies program in 2022. Before MIT, I earned my B.A. in Social Sciences from Universidad Torcuato Di Tella and worked in the President of Argentina's Office.</p>
+          <p>My dissertation project is an ethnographic study of how people who build and work with AI systems understand the effects of those systems on the people who use them.</p>
+        </div>
+        <div data-es>
+          <p>Soy estudiante doctoral en Comunicación en Stanford, donde soy Knight-Hennessy Scholar. Investigo la gobernanza tecnológica desde una perspectiva sociocultural.</p>
+          <p>Recibí mi maestría del programa de Estudios Comparativos de Medios de MIT en 2022. Antes de MIT, estudié la Licenciatura en Ciencias Sociales en la Universidad Torcuato Di Tella y trabajé en la Presidencia de Argentina.</p>
+          <p>Mi proyecto de tesis doctoral es un estudio etnográfico de cómo los desarrolladores de sistemas de IA entienden los efectos de estas tecnologías en sus usuarios.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">
+        <span data-en>Some publications</span>
+        <span data-es>Algunas publicaciones</span>
+      </h2>
+
+      <div class="pub">
+        <div><span class="pub-question" data-en>Where did platform "Trust &amp; Safety" come from?</span><span class="pub-question" data-es>¿Cómo empezó la moderación de contenidos?</span></div>
+        <div class="pub-title"><a href="https://doi.org/10.1177/20539517251403973" target="_blank" rel="noopener">From the Virtual Community to "Trust and Safety": eBay (1995–2007) and the Rise of Platform Governance</a></div>
+        <div class="pub-meta"><span class="pub-journal">Big Data &amp; Society</span> <span class="pub-tail">· 2026</span></div>
+      </div>
+
+      <div class="pub">
+        <div><span class="pub-question" data-en>Who decides what counts as online harm?</span><span class="pub-question" data-es>¿Quién decide qué cuenta como daño en Internet?</span></div>
+        <div class="pub-title"><a href="https://doi.org/10.1177/20563051261459889" target="_blank" rel="noopener">Constructing Online Harms: How "Trust and Safety" Translates Safety Into Risk</a></div>
+        <div class="pub-meta"><span class="pub-journal">Social Media + Society</span> <span class="pub-tail">· 2026</span></div>
+      </div>
+
+      <div class="pub">
+        <div><span class="pub-question" data-en>How did we end up associating auto-refresh with addiction?</span><span class="pub-question" data-es>¿Cómo terminamos asociando el auto-refresh con la adicción?</span></div>
+        <div class="pub-title"><a href="https://shop.kernelmag.io/products/kernel-magazine-issue-6" target="_blank" rel="noopener">A Media History of the Infinite Feed</a></div>
+        <div class="pub-meta"><span class="pub-journal">Kernel</span> <span class="pub-tail" data-en>· Forthcoming online</span><span class="pub-tail" data-es>· Próximamente en línea</span></div>
+      </div>
+
+      <div class="cv-note">
+        <span data-en>You can find my full list of publications in my </span>
+        <span data-es>Mi lista completa de publicaciones está en mi </span>
+        <a href="https://docs.google.com/document/d/1_j5wAePur_5uScyUMNWIpLG6JiUQrYiboYdtEXDWnS8" target="_blank" rel="noopener">CV</a>.
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    function copyEmail(e) {
+      e.preventDefault();
+      navigator.clipboard.writeText('tguarna@stanford.edu');
+      const isEs = document.documentElement.lang === 'es';
+      e.target.dataset.tooltip = isEs ? '¡Copiado!' : 'Copied!';
+      e.target.classList.add('copied');
+      setTimeout(() => e.target.classList.remove('copied'), 2000);
+    }
+
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+    }
+
+    (function () {
+      const img = document.querySelector('aside img');
+      if (!img) return;
+
+      const canvas = document.createElement('canvas');
+      canvas.style.cssText = 'image-rendering:pixelated;cursor:default;';
+      img.insertAdjacentElement('beforebegin', canvas);
+      img.style.display = 'none';
+
+      const ctx = canvas.getContext('2d');
+      const off = document.createElement('canvas');
+      const offCtx = off.getContext('2d');
+      let W = 0, H = 0, progress = 0, target = 0, rafId = null;
+
+      function drawCover(targetCtx, tw, th) {
+        const iw = img.naturalWidth, ih = img.naturalHeight;
+        if (!iw || !ih) return;
+        const scale = Math.max(tw / iw, th / ih);
+        const dw = iw * scale, dh = ih * scale;
+        targetCtx.drawImage(img, (tw - dw) / 2, (th - dh) / 2, dw, dh);
+      }
+
+      function draw() {
+        if (!W || !H || !img.naturalWidth) return;
+        const pixelSize = Math.max(1, Math.round(Math.pow(12, progress)));
+        const sw = Math.ceil(W / pixelSize);
+        const sh = Math.ceil(H / pixelSize);
+        off.width = sw; off.height = sh;
+        offCtx.imageSmoothingEnabled = true;
+        offCtx.imageSmoothingQuality = 'high';
+        drawCover(offCtx, sw, sh);
+        ctx.imageSmoothingEnabled = false;
+        ctx.clearRect(0, 0, W, H);
+        ctx.drawImage(off, 0, 0, sw, sh, 0, 0, W, H);
+      }
+
+      function animate() {
+        progress += (target - progress) * 0.12;
+        draw();
+        if (Math.abs(target - progress) > 0.001) {
+          rafId = requestAnimationFrame(animate);
+        } else {
+          progress = target;
+          draw();
+          rafId = null;
+        }
+      }
+
+      function setTarget(t) {
+        target = t;
+        if (!rafId) rafId = requestAnimationFrame(animate);
+      }
+
+      if ('ontouchstart' in window) {
+        canvas.addEventListener('touchstart', () => setTarget(1), { passive: true });
+        canvas.addEventListener('touchend', () => setTarget(0), { passive: true });
+      } else {
+        canvas.addEventListener('mouseenter', () => setTarget(1));
+        canvas.addEventListener('mouseleave', () => setTarget(0));
+      }
+
+      new ResizeObserver(([entry]) => {
+        const dpr = window.devicePixelRatio || 1;
+        W = canvas.width = Math.round(entry.contentRect.width * dpr);
+        H = canvas.height = Math.round(entry.contentRect.height * dpr);
+        draw();
+      }).observe(canvas);
+
+      img.complete && img.naturalWidth ? draw() : img.addEventListener('load', draw);
+    })();
+  </script>
+</body>
+</html>
